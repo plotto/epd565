@@ -26,3 +26,24 @@ Documentation
 =============
 * https://www.thepolyglotdeveloper.com/2017/02/connect-raspberry-pi-pi-zero-usb-ttl-serial-cable/
 * https://www.waveshare.com/wiki/5.65inch_e-Paper_Module_(F)
+
+Process (Outline)
+=================
+1. Plug powered USB hub into wall, and plug Pi power into hub on a 2A out line, verify boot (power light turns on)
+1. Image the SD card with Raspbian Lite
+1. Enable UART in config.txt (enable_uart=1)
+1. Clip the female ends off the console cable and solder it on to pi (not the red power wire though)
+1. Install silabs driver on your computer
+1. Put the dongle in the hub, connect Pi usb otg to hub's otg, and Pi's power on a 2A port
+1. Power on the hub, plug the USB end of the console cable in, point your favorite terminal program to your new USBtoUART port (i used gnu screen: "screen /dev/cu.SLAB_USBtoUART 115200")
+1. sudo raspi-config to enable spi and connect to wifi
+1. verify Python3
+1. install pip3
+1. install $(necessary python modules)
+1. "Install BCM2835 libraries"
+1. "Install WiringPi libraries"
+1. "Install Python3 libraries"
+1. "sudo git clone https://github.com/waveshare/e-Paper"
+1. verify that the python epd_5in65.py script runs -- should get stuck on "e-paper is busy" since it can't read it
+1. poweroff, disassemble, clip the EPD ribbon cable female ends off and solder on to Pi
+1. reassemble, log in, run epd_5in65.py verify output on screen
