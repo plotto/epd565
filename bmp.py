@@ -130,6 +130,7 @@ if args["p"]:
       print("Heard: "+transmission.decode("ascii"))
   
   # how many times to clear-cycle eInk screen
+  # after even just a couple days pixels can get sticky, cycle .Clear()s until they shake loose
   for i in range(0,args["c"]):
     s.write(b'\x01'*1024)
 
