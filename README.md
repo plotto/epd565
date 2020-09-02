@@ -50,10 +50,10 @@ Process (Outline)
 1. install this serial reader script
 1. add sudo python3 $(this reader script) to /etc/rc.local
 1. raspi-config disable console on serial
-1. this is where i am
+1. solder red usb cable onto 5v gpio
+1. pray?
 
 Next Steps
 ==========
-1. solder 5v power line from USB onto pi
 1. add external activity or power light?
 1. frame and mount it
