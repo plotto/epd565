@@ -51,7 +51,8 @@ Process (Outline)
 1. add sudo python3 $(this reader script) to /etc/rc.local
 1. raspi-config disable console on serial
 1. solder red usb cable onto 5v gpio
-1. pray?
+1. i can't believe this is working, but it is
+1 pray?
 
 Next Steps
 ==========
