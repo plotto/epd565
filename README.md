@@ -47,7 +47,7 @@ Process (Outline)
 1. verify that the python epd_5in65.py script runs -- should get stuck on "e-paper is busy" since it can't read it
 1. poweroff, disassemble, clip the EPD ribbon cable female ends off and solder on to Pi
 1. reassemble, log in, run epd_5in65.py verify output on screen
-1. install this serial reader script
+1. install this serial reader script (add /screenpipe to /home)
 1. add sudo python3 $(this reader script) to /etc/rc.local
 1. raspi-config disable console on serial
 1. solder red usb cable onto 5v gpio
