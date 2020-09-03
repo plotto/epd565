@@ -41,6 +41,7 @@ but now i'm face to face with a photo that does /not/ look as good as the pre-ei
 well fuck.  these seven colors are red green blue yellow orange white black.  defined in the color table (so presumably necessary to drive the screen) as FF0000, 00FF00, 0000FF, FFFF00, FF8000, FFFFFF, 000000.  they're the full pure color values.  but e-ink is at the best of times glorified shades of gray.  i need to calibrate!  i flash a bitmap of the seven color palette to the screen, pop the screen off the ribbon and take it over to my trusty scanner, circa 2002.  eink is super cool, i love that i can do this.  i scan it, and take averaged color values and sure enough, the actual values are way, way different.  white is A5B1B1, black is closer to 404040, all the colors are muddled middle gray colors.  i define a new palette in pillow with these values, and at this point i'm comfortable enough with the bitmap file spec that i'm fairly confident after i convert the jpg to an indexed bitmap with my true color palette i can just swap the palette bytes for the idealized (FF0000) palette bytes, then convert to RGB and the indices should pick up the idealized colors and it should be good to go.
 
 see the /img folder on this repo for comparisons between the actual colors and the idealized colors.  (after i took that scan and processed it i realized that the orange being dithered meant i hadn't calibrated correctly yet, and improved it somewhat again.  however the lightness of the black was starting to dominate pictures and i manually tweaked it down to 202020 just to improve output [to encourage more color selection].  more manual tweaks will likely come.)
+
 ![true colors](./img/realeinkpalette.png)
 ![idealized colors](./img/einkpalette.png)
 
@@ -64,8 +65,8 @@ now i have to build a frame. neighborhood hardware store is closed due to employ
 i'm forgetting lots of fiddly shit, and i need to stress this has taken way, way more time than it ought.  i had to learn basically every step of the way.  it's been over a week of working 10pm-3am doing this shit. but it's fun.
 
 it's amazing what you can do with 7 colors and a good dither:
-![st george and dragon](./img/dragon.jpg)
+![st george and dragon](./img/george.jpg)
 ![seascape](./img/seascape.jpg)
 ![young hare](./img/hare.jpg)
-![with greta](./img/withgreta.jpg)
+![with greta](./img/withgreta.jpgj.jpg)
 
