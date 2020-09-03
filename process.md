@@ -61,3 +61,6 @@ i am now sitting with a little device which has no cords, that when i plug in to
 now i have to build a frame. neighborhood hardware store is closed due to employee covid unfortunately...
 i'm forgetting lots of fiddly shit, and i need to stress this has taken way, way more time than it ought.  i had to learn basically every step of the way.  it's been over a week of working 10pm-3am doing this shit. but it's fun.
 
+it's amazing what you can do with 7 colors and a good dither:
+![true colors](./img/realeinkpalette.png)
+
