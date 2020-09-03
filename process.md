@@ -56,4 +56,4 @@ finally i solder the power line on the console cable on.  so far i've just been 
 
 i am now sitting with a little device which has no cords, that when i plug in to my computer it powers up, listens on port, slurps up a specially prepared image and flashes it to the screen (after 0+ clear cycles) then powers off.
 
-now i have to build a frame.
+now i have to build a frame. local hardware store is closed due to employee covid unfortunately...
