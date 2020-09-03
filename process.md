@@ -59,3 +59,5 @@ finally i solder the power line on the console cable on.  so far i've just been 
 i am now sitting with a little device which has no cords, that when i plug in to my computer it powers up, listens on port, slurps up a specially prepared image and flashes it to the screen (after 0+ clear cycles) then powers off.
 
 now i have to build a frame. neighborhood hardware store is closed due to employee covid unfortunately...
+i'm forgetting lots of fiddly shit, and i need to stress this has taken way, way more time than it ought.  i had to learn basically every step of the way.  it's been over a week of working 10pm-3am doing this shit. but it's fun.
+
