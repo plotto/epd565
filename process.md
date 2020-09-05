@@ -72,3 +72,8 @@ it's amazing what you can do with 7 colors and a good dither:
 ![young hare](./img/hare.jpg)
 ![with greta](./img/withgreta.jpgj.jpg)
 
+
+addendum
+========
+
+it probably would be cool to do this with a pi zero w, put a push button on the pi which would make it power up, download whatever is at a hardcoded www end point, push it to screen, and then shutdown.  if it was even a 2 amp draw, with a 2 minute cycle, that's a lot of cycles available from a 4AA battery pack...
