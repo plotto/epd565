@@ -85,18 +85,18 @@ Part 2
 I've created a GUI for it.
 
 1. Some basic color manipulators:
-  1. Saturation
-  1. Brightness
-  1. Contrast
-  1. R/G/B channel scalars
+    1. Saturation
+    1. Brightness
+    1. Contrast
+    1. R/G/B channel scalars
 1. Sliders for positioning the crop
 1. The ability to opt-out of one or more of the e-ink colors.
-  1. this allows for B/W output
+    1. this allows for B/W output
 1. Preview windows
-  1. Original Image
-  1. that image re-colored to expected e-ink colors
-  1. that image dithered ("What we expect to see")
-  1. the false color output file for the e-ink screen ("what the machine will see")
+    1. Original Image
+    1. that image re-colored to expected e-ink colors
+    1. that image dithered and cropped ("What we expect to see")
+    1. the false color output file for the e-ink screen ("what the machine will see")
 
 ![gui](./img/interface.png)
 ![reduced](./img/reducedpalette.png)
