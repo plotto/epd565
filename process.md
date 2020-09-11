@@ -78,3 +78,26 @@ addendum
 ========
 
 it probably would be cool to do this with a pi zero w, put a push button on the pi which would make it power up, download whatever is at a hardcoded www end point, push it to screen, and then shutdown.  if it was even a 2 amp draw, with a 2 minute cycle, that's a lot of cycles available from a 4AA battery pack...
+
+
+Part 2
+======
+I've created a GUI for it.
+
+1. Some basic color manipulators:
+  1. Saturation
+  1. Brightness
+  1. Contrast
+  1. R/G/B channel scalars
+1. Sliders for positioning the crop
+1. The ability to opt-out of one or more of the e-ink colors.
+  1. this allows for B/W output
+1. Preview windows
+  1. Original Image
+  1. that image re-colored to expected e-ink colors
+  1. that image dithered ("What we expect to see")
+  1. the false color output file for the e-ink screen ("what the machine will see")
+
+![gui](./img/interface.png)
+![reduced](./img/reducedpalette.png)
+![bw](./img/bw.png)
