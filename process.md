@@ -94,8 +94,8 @@ I've created a GUI for it.
     1. this allows for B/W output
 1. Preview windows
     1. Original Image
-    1. that image re-colored to expected e-ink colors
-    1. that image dithered and cropped ("What we expect to see")
+    1. that image with the color modifications applied
+    1. that image repaletted to expected colors and dithered and cropped ("What we expect to see")
     1. the false color output file for the e-ink screen ("what the machine will see")
 
 ![gui](./img/interface.png)
