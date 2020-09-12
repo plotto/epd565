@@ -101,3 +101,4 @@ I've created a GUI for it.
 ![gui](./img/interface.png)
 ![reduced](./img/reducedpalette.png)
 ![bw](./img/bw.png)
+
