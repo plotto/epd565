@@ -91,7 +91,7 @@ I've created a GUI for it.
     1. R/G/B channel scalars
 1. Sliders for positioning the crop
 1. The ability to opt-out of one or more of the e-ink colors.
-    1. this allows for B/W output
+    1. this allows for B/W output, otherwise things like blue would be used to fill in for light-gray
 1. Preview windows
     1. Original Image
     1. that image with the color modifications applied
