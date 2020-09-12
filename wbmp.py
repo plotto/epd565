@@ -9,6 +9,7 @@ from hashlib import md5
 from math import ceil
 from sys import exit
 import tkinter as tk
+import tkinter.filedialog as fd
 
 activeColors = ["R","G","B","Y","O","K","W"]
 eInkDrivingPaletteBytes= { "R": [0x00, 0x00, 0xFF, 0x00], "G": [0x00, 0xFF, 0x00, 0x00], "B": [0xFF, 0x00, 0x00, 0x00], "Y": [0x00, 0xFF, 0xFF, 0x00], "O": [0x00, 0x80, 0xFF, 0x00], "K": [0x00, 0x00, 0x00, 0x00], "W": [0xFF, 0xFF, 0xFF, 0xFF] }
@@ -16,7 +17,7 @@ eInkTruePaletteBytes= { "R": [0x5D, 0x5A, 0x92, 0x00], "G": [0x54, 0x73, 0x50, 0
 targetPalette= { "R": [0x92, 0x5a, 0x5d], "G": [0x50, 0x73, 0x54], "B": [0x52, 0x5b, 0x74], "Y": [0xa0, 0xa0, 0x60], "O": [0xa5, 0x7e, 0x61], "K": [0x20, 0x20, 0x20], "W": [0xb1, 0xb1, 0xb2] }
 
 parser = argparse.ArgumentParser(description='Prepare an image for Waveshare 5.65inch ACeP 7-Color E-Paper E-Ink Display Module.')
-parser.add_argument('i', help='input file')
+parser.add_argument('-i', help='input file')
 parser.add_argument('--keepPalette', help='skip fitting to eink palette (still hotswaps in the eink palette)',action="store_true")
 parser.add_argument('-p', help='serial port', nargs='?',const="/dev/cu.SLAB_USBtoUART")
 parser.add_argument('-br', help='serial baudrate', type=int, default=115200)
@@ -37,9 +38,10 @@ paletteImage.putpalette(([int(byte) for colorBytes in [targetPalette[color] for 
 
 # target image size
 (targetwidth, targetheight) = (600.0, 448.0)
-
-# open the image and make sure it's in RGB mode
-im = Image.open(args['i'])
+im = None
+root = tk.Tk()
+root.file = fd.askopenfilename(initialdir="/Users/thomjc/Downloads", title="Select file")
+im = Image.open(root.file)
 im = im.convert("RGB")
 
 (width, height) = im.size
@@ -264,7 +266,7 @@ def nextColumn(colspan=1,reset=False,suppressIncrement=False):
   if not suppressIncrement: column += colspan
   return current
 
-root = tk.Tk()
+#root = tk.Tk()
 main = tk.Frame(root)
 main.grid()
 
