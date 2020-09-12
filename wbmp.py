@@ -2,9 +2,8 @@ import tkinter as tk
 from PIL import Image, ImageTk, ImageDraw, ImageEnhance
 import numpy as np
 from io import BytesIO
-import argparse
 import zipfile
-import serial, time
+import serial
 from hashlib import md5
 from math import ceil
 from sys import exit
@@ -16,13 +15,6 @@ eInkDrivingPaletteBytes= { "R": [0x00, 0x00, 0xFF, 0x00], "G": [0x00, 0xFF, 0x00
 eInkTruePaletteBytes= { "R": [0x5D, 0x5A, 0x92, 0x00], "G": [0x54, 0x73, 0x50, 0x00], "B": [0x74, 0x5B, 0x52, 0x00], "Y": [0x60, 0xA0, 0xA0, 0x00], "O": [0x61, 0x7E, 0xA5, 0x00], "K": [0x40, 0x40, 0x40, 0x00], "W": [0xB2, 0xB1, 0xB1, 0x00] }
 targetPalette= { "R": [0x92, 0x5a, 0x5d], "G": [0x50, 0x73, 0x54], "B": [0x52, 0x5b, 0x74], "Y": [0xa0, 0xa0, 0x60], "O": [0xa5, 0x7e, 0x61], "K": [0x20, 0x20, 0x20], "W": [0xb1, 0xb1, 0xb2] }
 
-parser = argparse.ArgumentParser(description='Prepare an image for Waveshare 5.65inch ACeP 7-Color E-Paper E-Ink Display Module.')
-parser.add_argument('-i', help='input file')
-parser.add_argument('--keepPalette', help='skip fitting to eink palette (still hotswaps in the eink palette)',action="store_true")
-parser.add_argument('-p', help='serial port', nargs='?',const="/dev/cu.SLAB_USBtoUART")
-parser.add_argument('-br', help='serial baudrate', type=int, default=115200)
-parser.add_argument('-c', help='how many times to clear-cycle the eInk screen', type=int, default=1 )
-args = vars(parser.parse_args())
 
 # this is the palette with the RGB values needed to drive the eink display
 finalPaletteByteArray = bytearray(([byte for colorBytes in [eInkDrivingPaletteBytes[color] for color in activeColors] for byte in colorBytes] * ceil(1024.0/(len(activeColors)*4)))[:1024])
@@ -67,11 +59,10 @@ def dither(img):
   # convert input image to real color dithered
   paletteImage.putpalette(([int(byte) for colorBytes in [targetPalette[color] for color in activeColors] for byte in colorBytes] * ceil(768.0/(len(activeColors)*3)))[:768])
 
-  if not args["keepPalette"]:
-    dithered.load()
-    paletteImage.load()
-    newim = dithered.im.convert("P",True,paletteImage.im)
-    return dithered._new(newim)
+  dithered.load()
+  paletteImage.load()
+  newim = dithered.im.convert("P",True,paletteImage.im)
+  return dithered._new(newim)
 
 def ditherPreview(img):
   expected = dither(img)
@@ -336,8 +327,8 @@ einkedColor.grid(row=1,column=1)
 finish = tk.Frame(main)
 finish.grid(row=2,column=0)
 
-tk.Button(finish,text="Save Dithered",highlightbackground='#3E4149',command=saveDithered).grid(row=0,column=0)
-tk.Button(finish,text="Save eInked",highlightbackground='#3E4149',command=saveEinked).grid(row=0,column=1)
+tk.Button(finish,text="Export Dithered",highlightbackground='#3E4149',command=saveDithered).grid(row=0,column=0)
+tk.Button(finish,text="Export eInked",highlightbackground='#3E4149',command=saveEinked).grid(row=0,column=1)
 
 port = tk.StringVar()
 port.set("/dev/cu.SLAB_USBtoUART 115200")
