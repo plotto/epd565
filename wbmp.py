@@ -28,6 +28,7 @@ root.file = fd.askopenfilename(initialdir="/Users/thomjc/Downloads", title="Sele
 im = Image.open(root.file)
 im = im.convert("RGB")
 
+
 (width, height) = im.size
 # resize
 if height > width:
