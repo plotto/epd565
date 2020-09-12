@@ -104,7 +104,7 @@ I've created a GUI for it.
 
 Framed
 ======
-It was a mistake to matte in pure white -- i thought it might make the colors pop extra, but really it just accentuates how gray everything is.  Am going to swap it out for gray.
+It was a mistake to use white matboard -- i thought it might make the colors pop extra, but really it just accentuates how gray everything is.  Am going to swap it out for some gray matboard i have on hand.
 ![frame front](./img/frame-front.jpg)
 ![frame back](./img/frame-back.jpg)
 
