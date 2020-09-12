@@ -6,6 +6,7 @@ import zipfile
 import serial, time
 from hashlib import md5
 
+
 parser = argparse.ArgumentParser(description='Prepare an image for Waveshare 5.65inch ACeP 7-Color E-Paper E-Ink Display Module.')
 parser.add_argument('-i', help='input file',required=True)
 parser.add_argument('--keepPalette', help='skip fitting to eink palette (still hotswaps in the eink palette)',action="store_true")
