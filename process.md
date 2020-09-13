@@ -110,5 +110,5 @@ It was a mistake to use white matboard -- i thought it might make the colors pop
 
 
 better picture:
-![final](./img/final.jpg)
+![final](./img/final.JPG)
 
