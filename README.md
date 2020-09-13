@@ -57,7 +57,3 @@ Process (Outline)
 1. wbmp.py is a python (tkinter) GUI for preparing images and pushing them to the pi over the USB to Serial Console Cable
 1. Screen.command can be dragged to your OSx dock as a shortcut for opening it
 
-Next Steps
-==========
-1. add external activity or power light?
-1. frame and mount it
