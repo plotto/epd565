@@ -43,8 +43,13 @@ well fuck.  these seven colors are red green blue yellow orange white black.  de
 
 see the /img folder on this repo for comparisons between the actual colors and the idealized colors.  (after i took that scan and processed it i realized that the orange being dithered meant i hadn't calibrated correctly yet, and improved it somewhat again.  however the lightness of the black was starting to dominate pictures and i manually tweaked it down to 202020 just to improve output [to encourage more color selection].  more manual tweaks will likely come.)
 
-![true colors](./img/realeinkpalette.png)
+what it thinks it is:
+
 ![idealized colors](./img/einkpalette.png)
+
+what it really is:
+
+![true colors](./img/realeinkpalette.png)
 
 i get that shit working, the true color (gray colors) dither looks good, the idealized color dither looks wild but good, i flash it to the screen and holy shit the picture looks 100% better.  there's still some finagling to do, so i end up adding a bunch of basic color manipulation to my conversion script.  scalar arguments for the separate R, G, and B channels so i can pump up R and pull down B for example.  Later i add lightness and saturation scalars (pillow is sweet and makes this all super easy!).  a couple more arguments to let me fiddle with the scalars and inspect the expected output image and the idealized color bitmap to avoid problems before pushing to the screen (refreshing the screen takes approximately one half of an eternity) and i feel like a whiz.
 
