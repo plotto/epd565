@@ -53,7 +53,6 @@ Process (Outline)
 1. raspi-config disable console on serial
 1. ssh for terminal as needed
 1. solder red usb cable onto 5v gpio
-1. i can't believe this is working, but it is
 1. wbmp.py is a python (tkinter) GUI for preparing images and pushing them to the pi over the USB to Serial Console Cable
 1. Screen.command can be dragged to your OSx dock as a shortcut for opening it
 
