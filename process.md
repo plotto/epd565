@@ -106,12 +106,14 @@ example of file prepped for the screen with all the color channels turned off
 
 Framed
 ======
+I don't have a router or a table saw, so i use moulding from the hardware store to make my frames.  some leftover plexi (hard to found now!) and  
 It was a mistake to use white matboard -- i thought it might make the colors pop extra, but really it just accentuates how gray everything is.  Am going to swap it out for some gray matboard i have on hand.
 ![frame front](./img/frame-front.jpg)
 ![frame back](./img/frame-back.jpg)
 
 
-better picture, now w/gray matboard:
+better picture, now w/gray matboard from a previous project's scrap:
 
 ![final](./img/final.JPG)
 
+The screen is mounted to 1/8th plywood sheet with 3 inches of skirt around it, there's a cutout behind the board where the pi is nestled in (gonna have to mount that too, and hot glue around the godawful soldering).  4 screws at the corners of the plywood stick up to flush with the height of the screen, and the matboard is attached to those screws to keep everything in place.  then that assembly is slipped into the frame.  the usb cord tucks up in the back of the frame.  considering mounting a female/female adapter to create a proper usb port on the side of the frame...
