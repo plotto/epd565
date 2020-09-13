@@ -108,3 +108,7 @@ It was a mistake to use white matboard -- i thought it might make the colors pop
 ![frame front](./img/frame-front.jpg)
 ![frame back](./img/frame-back.jpg)
 
+
+better picture:
+![final](./img/final.jpg)
+
