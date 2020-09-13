@@ -100,6 +100,8 @@ I've created a GUI for it.
 
 ![gui](./img/interface.png)
 ![reduced](./img/reducedpalette.png)
+
+example of file prepped for the screen with all the color channels turned off
 ![bw](./img/bw.png)
 
 Framed
@@ -109,6 +111,7 @@ It was a mistake to use white matboard -- i thought it might make the colors pop
 ![frame back](./img/frame-back.jpg)
 
 
-better picture:
+better picture, now w/gray matboard:
+
 ![final](./img/final.JPG)
 
