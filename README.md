@@ -54,8 +54,8 @@ Process (Outline)
 1. ssh for terminal as needed
 1. solder red usb cable onto 5v gpio
 1. wbmp.py is a python (tkinter) GUI for preparing images and pushing them to the pi over the USB to Serial Console Cable
-  1. needs pyserial, tkinter, pillow
-  1. i also edited the ImageEnhance library file of the pillow module to add a ContrastEink method (identical to Contrast but which sets the mean color to 121) 
+    1. needs pyserial, tkinter, pillow
+    1. i also edited the ImageEnhance library file of the pillow module to add a ContrastEink method (identical to Contrast but which sets the mean color to 121) 
 1. Screen.command can be dragged to your OSx dock as a shortcut for opening it
 
 See Process.md for a long belabored story.
