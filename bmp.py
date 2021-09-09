@@ -1,16 +1,17 @@
-from PIL import Image
+from PIL import Image, ImageEnhance
 import numpy as np
 from io import BytesIO
 import argparse
 import zipfile
 import serial, time
 from hashlib import md5
-
+from math import ceil
 
 parser = argparse.ArgumentParser(description='Prepare an image for Waveshare 5.65inch ACeP 7-Color E-Paper E-Ink Display Module.')
 parser.add_argument('-i', help='input file',required=True)
 parser.add_argument('--keepPalette', help='skip fitting to eink palette (still hotswaps in the eink palette)',action="store_true")
 parser.add_argument('-o', help='output file')
+parser.add_argument('--colors', help='output colors',default="RGBYOKW")
 parser.add_argument('-r', type=float, help='red intensity scalar')
 parser.add_argument('-g', type=float, help='green intensity scalar')
 parser.add_argument('-b', type=float, help='blue intensity scalar')
@@ -20,6 +21,7 @@ parser.add_argument('--left', type=int, help='distance from left for crop')
 parser.add_argument('--right', type=int, help='distance from left for crop')
 parser.add_argument('--lightness', type=float, help='lighten/darken scalar')
 parser.add_argument('--saturation', type=float, help='color saturation scalar')
+parser.add_argument('--contrast', type=float, help='contrast scalar')
 parser.add_argument('-p', help='serial port', nargs='?',const="/dev/cu.SLAB_USBtoUART")
 parser.add_argument('-br', help='serial baudrate', type=int, default=115200)
 parser.add_argument('-c', help='how many times to clear-cycle the eInk screen', type=int, default=1 )
@@ -29,15 +31,17 @@ args = vars(parser.parse_args())
 assert((args['left'] != None and args['right'] == None) or (args['left'] == None and args['right'] != None) or (args['left'] == None and args['right'] == None))
 assert((args['top'] != None and args['bottom'] == None) or (args['top'] == None and args['bottom'] != None) or (args['top'] == None and args['bottom'] == None))
 # this is the palette with the RGB values needed to drive the eink display
-finalPaletteByteArray = bytearray([0x00, 0x00, 0xFF, 0x00, 0x00, 0xFF, 0x00,0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0x80, 0xFF,0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0xFF,0x00] * 32)
+
+
+activeColors = [char for char in args['colors']]
+eInkDrivingPaletteBytes= { "R": [0x00, 0x00, 0xFF, 0x00], "G": [0x00, 0xFF, 0x00, 0x00], "B": [0xFF, 0x00, 0x00, 0x00], "Y": [0x00, 0xFF, 0xFF, 0x00], "O": [0x00, 0x80, 0xFF, 0x00], "K": [0x00, 0x00, 0x00, 0x00], "W": [0xFF, 0xFF, 0xFF, 0xFF] }
+eInkTruePaletteBytes= { "R": [0x5D, 0x5A, 0x92, 0x00], "G": [0x54, 0x73, 0x50, 0x00], "B": [0x74, 0x5B, 0x52, 0x00], "Y": [0x60, 0xA0, 0xA0, 0x00], "O": [0x61, 0x7E, 0xA5, 0x00], "K": [0x40, 0x40, 0x40, 0x00], "W": [0xB2, 0xB1, 0xB1, 0x00] }
+targetPalette= { "R": [0x92, 0x5a, 0x5d], "G": [0x50, 0x73, 0x54], "B": [0x52, 0x5b, 0x74], "Y": [0xa0, 0xa0, 0x60], "O": [0xa5, 0x7e, 0x61], "K": [0x20, 0x20, 0x20], "W": [0xb1, 0xb1, 0xb2] }
 
 # this is the palette with the actual display colors, used for dithering accurately
 paletteImage = Image.new('P', (1, 1))
-#paletteImage.putpalette([int(x) for x in [0x78, 0x40, 0x43, 0x32, 0x5C, 0x3D, 0x35, 0x3F, 0x56, 0xAB, 0x9E, 0x54, 0xA4, 0x75, 0x4D, 0x30, 0x30, 0x30, 0xAF, 0xAF, 0xAF, 0xAF, 0xAF, 0xAF]] * 32)
 
-#paletteImage.putpalette([int(x) for x in [0x92, 0x5a, 0x5d, 0x50, 0x73, 0x54, 0x52, 0x5b, 0x74, 0xad, 0xa4, 0x68, 0xa5, 0x7e, 0x61, 0x20, 0x20, 0x20, 0xb1, 0xb1, 0xb2, 0xb1, 0xb1, 0xb2]] * 32)
-
-paletteImage.putpalette([int(x) for x in [0x92, 0x5a, 0x5d, 0x50, 0x73, 0x54, 0x52, 0x5b, 0x74, 0xa0, 0xa0, 0x60, 0xa5, 0x7e, 0x61, 0x20, 0x20, 0x20, 0xb1, 0xb1, 0xb2, 0xb1, 0xb1, 0xb2]] * 32)
+paletteImage.putpalette(([int(byte) for colorBytes in [targetPalette[color] for color in activeColors] for byte in colorBytes] * ceil(768.0/(len(activeColors)*3)))[:768])
 
 # target image size
 (targetwidth, targetheight) = (600.0, 448.0)
@@ -102,10 +106,6 @@ else:
   bottom = 448
   im = im.crop((left,top,right,bottom))
 
-# process lightness/darkness options
-if args['lightness']:
-  for chan in ('r','g','b'):
-    args[chan] = args['lightness'] if args[chan] == None else args[chan] * args['lightness']
   
 # allow for color intensity options
 if args['r'] != None or args['g'] != None or args['b'] != None:
@@ -118,12 +118,18 @@ if args['r'] != None or args['g'] != None or args['b'] != None:
   im = Image.merge("RGB",[Image.fromarray(channels[chan].astype(np.uint8)) for chan in ('r','g','b')])
 
 if args['saturation'] != None:
-  im = im.convert('HSV')
-  (h,s,v) = [np.array(chan,dtype=np.uint16) for chan in im.split()]
-  s = s * args['saturation']
-  channels = { 'h': h, 's': s, 'v': v }
-  im = Image.merge("HSV",[Image.fromarray(channels[chan].astype(np.uint8)) for chan in ('h','s','v')])
-  im = im.convert("RGB")
+  saturator = ImageEnhance.Color(im)
+  im = saturator.enhance(args['saturation'])
+
+if args['lightness']:
+  lightnessor = ImageEnhance.Brightness(im)
+  im = lightnessor.enhance(args['lightness'])
+
+if args['contrast']:
+  contrastor = ImageEnhance.ContrastEink(im)
+  im = contrastor.enhance(args['contrast'])
+
+
 
 # convert input image to real color dithered
 if not args["keepPalette"]:
@@ -140,7 +146,8 @@ if not args["o"] and not args["p"] and not args["showEinkPalette"]:
 ba = BytesIO()
 im.save(ba, format='BMP')
 ba = bytearray(ba.getvalue())
-ba[54:1078] = finalPaletteByteArray
+ba[54:1078] = bytearray(([byte for colorBytes in [eInkDrivingPaletteBytes[color] for color in activeColors] for byte in colorBytes] * ceil(1024.0/(len(activeColors)*4)))[:1024])
+#ba[54:1078] = finalPaletteByteArray
 
 # reload bytes as an image, and convert again to RGB to mimic the eink demo bmp
 # which had a palette but also RGB values for each pixel
