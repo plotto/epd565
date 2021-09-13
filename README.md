@@ -44,7 +44,7 @@ Process (Outline)
 1. "Install WiringPi libraries"
 1. "Install Python3 libraries"
 1. "sudo git clone https://github.com/waveshare/e-Paper"
-1. verify that the python epd_5in65.py script runs -- should get stuck on "e-paper is busy" since it can't read it
+1. verify that the python epd_5in65f.py script runs -- should get stuck on "e-paper is busy" since it can't read it
 1. poweroff, disassemble, clip the EPD ribbon cable female ends off and solder on to Pi
 1. reassemble, log in, run epd_5in65.py verify output on screen
 1. install this serial reader script (add ./screenpipe to /home/pi)
