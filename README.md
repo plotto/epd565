@@ -50,13 +50,14 @@ Process (Outline)
 1. install this serial reader script (add ./screenpipe to /home/pi)
 1. add the waveshare python lib folder to /home/pi/screenpipe
 1. add sudo python3 $(this reader script) to /etc/rc.local
-1. raspi-config disable console on serial
-1. ssh for terminal as needed
-1. solder red usb cable onto 5v gpio
-1. wbmp.py is a python (tkinter) GUI for preparing images and pushing them to the pi over the USB to Serial Console Cable
+    1. You'll need to make sure you use non-relative paths in the scripts, and also all the pip installed python libraries need to be installed via sudo
+3. raspi-config disable console on serial
+4. ssh for terminal as needed
+5. solder red usb cable onto 5v gpio
+6. wbmp.py is a python (tkinter) GUI for preparing images and pushing them to the pi over the USB to Serial Console Cable
     1. needs pyserial, tkinter, pillow
     1. i also edited the ImageEnhance library file of the pillow module to add a ContrastEink method (identical to Contrast but which sets the mean color to 121)  -- this is almost certainly not the right way to do this.
     1. i use ls /dev/cu.* to find the serial device name 
-1. Screen.command can be dragged to your OSx dock as a shortcut for opening it
+7. Screen.command can be dragged to your OSx dock as a shortcut for opening it
 
 See Process.md for a long belabored story.
